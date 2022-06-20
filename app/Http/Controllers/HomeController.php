@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
+use App\Models\Answer;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $dateS = Carbon::now()->startOfMonth();
+        $dateE = Carbon::now()->endOfMonth(); 
+
+        $answers = Answer::whereIn('status',[2,4])->whereBetween('expiration',[$dateS,$dateE])->get();
+        $c_answers = count($answers);
+        return view('home', ['complete_answers' => $c_answers]);
     }
 }
