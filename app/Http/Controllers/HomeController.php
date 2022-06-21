@@ -31,6 +31,15 @@ class HomeController extends Controller
 
         $answers = Answer::whereIn('status',[2,4])->whereBetween('expiration',[$dateS,$dateE])->get();
         $c_answers = count($answers);
-        return view('home', ['complete_answers' => $c_answers]);
+
+        $dateS = Carbon::now()->startOfMonth()->subMonth(1);
+        $dateE = Carbon::now()->endOfMonth()->subMonth(1); 
+
+        $answers = Answer::whereIn('status',[2,4])->whereBetween('expiration',[$dateS,$dateE])->get();
+        $old_answers = count($answers);
+
+        $percentatge = (($c_answers - $old_answers)/$old_answers)*100;
+
+        return view('home', ['complete_answers' => $c_answers, 'percentatge' => $percentatge]);
     }
 }

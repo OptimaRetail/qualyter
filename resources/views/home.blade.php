@@ -17,14 +17,14 @@
 
 													<div class="col-auto">
 														<div class="stat text-primary">
-															<i class="align-middle" data-feather="truck"></i>
+															<i class="align-middle" data-feather="activity"></i>
 														</div>
 													</div>
 												</div>
 												<h1 class="mt-1 mb-3">{{$complete_answers}}</h1>
 												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
-													<span class="text-muted">Since last week</span>
+													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i>{{$percentatge}}%</span>
+													<span class="text-muted">{{__("Since last month")}}</span>
 												</div>
 											</div>
 										</div>
